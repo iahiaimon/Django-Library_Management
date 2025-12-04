@@ -11,7 +11,6 @@ class CustomUserForm(forms.ModelForm):
             "phone",
             "institute",
             "department",
-            "is_active",
             "password",
         )
 
