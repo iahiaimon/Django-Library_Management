@@ -10,6 +10,7 @@ db.sqlite3
 .env
 venv/
 env/
+.venv
 
 # IDE-specific files (e.g., PyCharm)
 .idea/
