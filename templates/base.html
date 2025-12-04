@@ -1,5 +1,5 @@
 {% load django_browser_reload %}
-{% django_browser_reload %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,11 @@
 </head>
 
 <body>
-this is base folder
+
+  {% block content %}
+
+  this is base folder
+  {% endblock %}
 </body>
 
 </html>
