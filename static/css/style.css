@@ -1,0 +1,26 @@
+        .book-cover {
+            background: linear-gradient(45deg, #2c5282, #4299e1);
+        }
+
+        .book-cover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .library-card {
+            background: linear-gradient(135deg, #805ad5, #6b46c1);
+        }
+
+        .sidebar-item:hover {
+            background-color: rgba(66, 153, 225, 0.1);
+        }
+
+        .sidebar-item.active {
+            background-color: rgba(66, 153, 225, 0.2);
+            border-left: 4px solid #4299e1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }

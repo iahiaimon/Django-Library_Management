@@ -1,0 +1,62 @@
+{% load static %}
+
+<!-- Sidebar -->
+<aside class="hidden md:flex md:flex-col md:w-64 bg-gray-900 text-white">
+    <div class="p-6">
+        <h1 class="text-2xl font-bold"><i class="fas fa-book mr-2"></i>LibraTech</h1>
+        <p class="text-gray-400 text-sm mt-1">Library Management System</p>
+    </div>
+
+    <nav class="flex-1 px-4 pb-4">
+        <div class="mb-8">
+            <h2 class="text-gray-500 text-xs uppercase font-bold tracking-wider mb-4">Main</h2>
+            <ul>
+                <li><a href="#" class="sidebar-item active flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-tachometer-alt mr-3"></i> Dashboard</a></li>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-book-open mr-3"></i> Browse Books</a></li>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-history mr-3"></i> Borrowing History</a></li>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-heart mr-3"></i> Wishlist</a></li>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-bell mr-3"></i> Notifications</a></li>
+            </ul>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="text-gray-500 text-xs uppercase font-bold tracking-wider mb-4">Account</h2>
+            <ul>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-user mr-3"></i> Profile</a></li>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-cog mr-3"></i> Settings</a></li>
+                <li><a href="#" class="sidebar-item flex items-center p-3 rounded-lg mb-2"><i
+                            class="fas fa-question-circle mr-3"></i> Help & Support</a></li>
+            </ul>
+        </div>
+
+        <div class="library-card p-4 rounded-lg">
+            <h3 class="font-bold mb-2">Your Library Card</h3>
+            <p class="text-sm mb-3">ID: LT-2024-7892</p>
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="text-xs">Active until</p>
+                    <p class="font-semibold">Dec 31, 2024</p>
+                </div>
+                <i class="fas fa-id-card text-2xl"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-4 border-t border-gray-800">
+        <div class="flex items-center">
+            <img class="h-10 w-10 rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user"
+                alt="User Avatar">
+            <div class="ml-3">
+                <p class="font-medium">Alex Johnson</p>
+                <p class="text-gray-400 text-sm">Member since 2022</p>
+            </div>
+        </div>
+    </div>
+</aside>

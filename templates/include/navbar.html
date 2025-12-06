@@ -1,0 +1,209 @@
+{% load static %}
+
+<!-- Top Header -->
+<header class="bg-white shadow-sm text-black">
+  <div class="flex justify-between items-center p-4">
+
+    <div class="flex items-center">
+      <button class="md:hidden p-2 mr-2 text-gray-900">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+      <h1 class="text-xl font-semibold text-gray-800">{{ user.username }}'s Dashboard</h1>
+    </div>
+
+
+    <!-- Dropdown in Navbar -->
+    <div class="relative group">
+      <button class="sidebar-item flex items-center justify-between w-full p-3 rounded-lg mb-2">
+        <div class="flex items-center">
+          <i class="fas fa-book-open mr-3"></i>
+          <span>Browse Books</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Dropdown Content -->
+      <div
+        class="absolute left-full top-0 ml-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+        <div class="py-2">
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-search mr-3 text-gray-400"></i>
+            <span>Search Books</span>
+          </a>
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-filter mr-3 text-gray-400"></i>
+            <span>By Category</span>
+          </a>
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-fire mr-3 text-gray-400"></i>
+            <span>Popular Books</span>
+          </a>
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-star mr-3 text-gray-400"></i>
+            <span>New Arrivals</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="flex items-center space-x-4">
+
+      <!-- Enhanced Search with Suggestions -->
+      <div class="relative hidden md:block">
+        <div class="relative">
+          <input type="text" id="searchInput" placeholder="Search books, authors, ISBN..."
+            class="pl-10 pr-4 py-2 border border-gray-300 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+            onfocus="this.parentElement.classList.add('w-80')" onblur="this.parentElement.classList.remove('w-80')">
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+        </div>
+
+        <!-- Search Suggestions -->
+        <div id="searchSuggestions"
+          class="absolute top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+          <div class="p-3 border-b">
+            <p class="text-xs text-gray-500 font-medium">Recent Searches</p>
+            <div class="mt-2">
+              <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Fiction</button>
+              <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Science</button>
+              <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Harry
+                Potter</button>
+            </div>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-500 font-medium mb-2">Quick Links</p>
+            <a href="#" class="flex items-center p-2 hover:bg-gray-50 rounded">
+              <i class="fas fa-book text-blue-500 mr-3"></i>
+              <div>
+                <p class="text-sm">Advanced Search</p>
+                <p class="text-xs text-gray-500">Search by ISBN, author, etc.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+            <!-- Enhanced Notifications -->
+      <div class="relative group">
+        <button
+          class="p-2 text-gray-700 hover:bg-gray-100 rounded-full relative transition-all duration-300 hover:scale-110">
+          <i class="fas fa-bell text-xl"></i>
+          <span class="absolute top-0 right-0 block h-3 w-3 rounded-full bg-red-500 animate-pulse"></span>
+        </button>
+
+        <!-- Notifications Dropdown -->
+        <div
+          class="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0">
+          <div class="p-4 border-b">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-gray-800">Notifications</h3>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">3 New</span>
+            </div>
+          </div>
+
+          <div class="max-h-96 overflow-y-auto">
+            <!-- Unread Notification -->
+            <div class="p-4 border-b hover:bg-blue-50 cursor-pointer transition-colors duration-200">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <div class="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                    <i class="fas fa-exclamation-circle"></i>
+                  </div>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Book Due Tomorrow</p>
+                  <p class="text-sm text-gray-600">"The Great Gatsby" is due tomorrow</p>
+                  <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <span class="h-2 w-2 bg-red-500 rounded-full"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Read Notification -->
+            <div class="p-4 border-b hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">Book Returned</p>
+                  <p class="text-sm text-gray-600">You successfully returned "1984"</p>
+                  <p class="text-xs text-gray-500 mt-1">1 day ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 border-t text-center">
+            <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">View All Notifications</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced User Profile Dropdown -->
+      <div class="relative group">
+        <button
+          class="flex items-center focus:outline-none transition-all duration-300 hover:bg-gray-100 p-2 rounded-lg">
+          <div class="relative">
+            <img
+              class="h-9 w-9 rounded-full border-2 border-transparent group-hover:border-blue-500 transition-all duration-300"
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user" alt="User Avatar">
+            <span class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></span>
+          </div>
+          <div class="ml-3 text-left hidden md:block">
+            <p class="font-medium text-gray-800">Alex Johnson</p>
+            <p class="text-xs text-gray-500">Gold Member</p>
+          </div>
+          <i
+            class="fas fa-chevron-down text-xs ml-2 text-gray-500 transition-transform duration-300 group-hover:rotate-180"></i>
+        </button>
+
+        <!-- Profile Dropdown -->
+        <div
+          class="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0">
+          <div class="p-4 border-b">
+            <div class="flex items-center">
+              <img class="h-12 w-12 rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user"
+                alt="User Avatar">
+              <div class="ml-3">
+                <p class="font-bold text-gray-800">Alex Johnson</p>
+                <p class="text-sm text-gray-600">alex.j@email.com</p>
+                <p class="text-xs text-blue-600 font-medium mt-1">Gold Member</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-2">
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+              <i class="fas fa-user-circle mr-3 text-gray-400"></i>
+              <span>My Profile</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+              <i class="fas fa-cog mr-3 text-gray-400"></i>
+              <span>Account Settings</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+              <i class="fas fa-shield-alt mr-3 text-gray-400"></i>
+              <span>Privacy & Security</span>
+            </a>
+          </div>
+
+          <div class="py-2 border-t">
+            <a href="#" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50">
+              <i class="fas fa-sign-out-alt mr-3"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
