@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Progress Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .completed {
+            border-left-color: #10b981;
+        }
+
+        .in-progress {
+            border-left-color: #f59e0b;
+        }
+
+        .not-started {
+            border-left-color: #ef4444;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen p-4 md:p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-book mr-3 text-blue-600"></i>Library Management System
+            </h1>
+            <p class="text-gray-600">Track your project progress and understand functionality for students, librarians,
+                and admins</p>
+
+            <!-- Progress Summary -->
+            <div class="mt-8 bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Project Progress Overview</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-blue-800">Completed</span>
+                            <span id="completed-count" class="font-bold text-blue-800">0</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="completed-bar" class="bg-green-600 h-2.5 rounded-full progress-bar"
+                                style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-yellow-800">In Progress</span>
+                            <span id="inprogress-count" class="font-bold text-yellow-800">0</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="inprogress-bar" class="bg-yellow-500 h-2.5 rounded-full progress-bar"
+                                style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-red-800">Not Started</span>
+                            <span id="notstarted-count" class="font-bold text-red-800">0</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="notstarted-bar" class="bg-red-500 h-2.5 rounded-full progress-bar"
+                                style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="flex flex-wrap mb-8 border-b border-gray-200">
+            <button class="tab-btn py-3 px-6 font-medium text-gray-600 hover:text-blue-600 active" data-tab="features">
+                <i class="fas fa-list-check mr-2"></i>Functionality & Features
+            </button>
+            <button class="tab-btn py-3 px-6 font-medium text-gray-600 hover:text-blue-600" data-tab="progress">
+                <i class="fas fa-chart-line mr-2"></i>Progress Tracker
+            </button>
+            <button class="tab-btn py-3 px-6 font-medium text-gray-600 hover:text-blue-600" data-tab="access">
+                <i class="fas fa-user-shield mr-2"></i>Access Levels
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <main>
+            <!-- Features & Functionality Tab -->
+            <div id="features" class="tab-content active">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Student Features -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-blue-600 text-white p-5">
+                            <h2 class="text-xl font-bold flex items-center">
+                                <i class="fas fa-user-graduate mr-3"></i>Student Features
+                            </h2>
+                            <p class="text-blue-100 mt-2">What students can do in the system</p>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 completed">
+                                    <h3 class="font-semibold text-gray-800">Browse Catalog</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Search and view available books in the library
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 in-progress">
+                                    <h3 class="font-semibold text-gray-800">Book Issuing</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Issue/borrow books from the library</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Return Books</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Return borrowed books to the library</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">View Borrowing History</h3>
+                                    <p class="text-gray-600 text-sm mt-1">See all previously borrowed books</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Check Due Dates</h3>
+                                    <p class="text-gray-600 text-sm mt-1">View due dates for currently borrowed books
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Renew Books</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Extend due dates for borrowed books</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Reserve Books</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Reserve books that are currently checked out
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">View Fines</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Check for any overdue fines</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-blue-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Profile Management</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Update personal information</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Librarian/Admin Features -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-green-600 text-white p-5">
+                            <h2 class="text-xl font-bold flex items-center">
+                                <i class="fas fa-user-tie mr-3"></i>Librarian/Admin Features
+                            </h2>
+                            <p class="text-green-100 mt-2">What librarians and admins can do in the system</p>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 completed">
+                                    <h3 class="font-semibold text-gray-800">Book Management</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Add, edit, or remove books from the catalog
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 in-progress">
+                                    <h3 class="font-semibold text-gray-800">User Management</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Add, edit, or remove student accounts</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Issue Books to Students</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Process book borrowing requests</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Accept Book Returns</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Process returned books and check condition</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Fine Management</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Calculate and manage overdue fines</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Generate Reports</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Create reports on borrowing, inventory, etc.
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Manage Reservations</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Handle book reservation requests</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">System Configuration</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Set borrowing limits, due dates, fine rates
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-green-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">View Audit Logs</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Monitor system activities and transactions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Features -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-purple-600 text-white p-5">
+                            <h2 class="text-xl font-bold flex items-center">
+                                <i class="fas fa-cogs mr-3"></i>System Features
+                            </h2>
+                            <p class="text-purple-100 mt-2">Core functionality of the library system</p>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 completed">
+                                    <h3 class="font-semibold text-gray-800">User Authentication</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Login/Logout for students and admins</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 in-progress">
+                                    <h3 class="font-semibold text-gray-800">Database Integration</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Connect to database for storing information
+                                    </p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Search Functionality</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Search books by title, author, category</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Notifications</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Send reminders for due dates and fines</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Dashboard Analytics</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Display statistics on library usage</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Responsive Design</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Works on mobile, tablet, and desktop</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Data Export</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Export reports to PDF/Excel format</p>
+                                </div>
+
+                                <div class="feature-card border-l-4 border-purple-500 pl-4 py-2 not-started">
+                                    <h3 class="font-semibold text-gray-800">Backup & Recovery</h3>
+                                    <p class="text-gray-600 text-sm mt-1">System backup and data recovery options</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker Tab -->
+            <div id="progress" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Project Progress Tracker</h2>
+
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Development Phases</h3>
+                        <div class="space-y-6">
+                            <!-- Phase 1 -->
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-medium text-gray-800">Phase 1: Foundation & Authentication</h4>
+                                    <span
+                                        class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Completed</span>
+                                </div>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-center"><i
+                                            class="fas fa-check-circle text-green-500 mr-2"></i> Project setup and
+                                        structure</li>
+                                    <li class="flex items-center"><i
+                                            class="fas fa-check-circle text-green-500 mr-2"></i> Database design and
+                                        setup</li>
+                                    <li class="flex items-center"><i
+                                            class="fas fa-check-circle text-green-500 mr-2"></i> User authentication
+                                        system</li>
+                                    <li class="flex items-center"><i
+                                            class="fas fa-check-circle text-green-500 mr-2"></i> Basic UI design</li>
+                                </ul>
+                            </div>
+
+                            <!-- Phase 2 -->
+                            <div class="border-l-4 border-yellow-500 pl-4">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-medium text-gray-800">Phase 2: Core Book Management</h4>
+                                    <span
+                                        class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">In
+                                        Progress</span>
+                                </div>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-center"><i
+                                            class="fas fa-check-circle text-green-500 mr-2"></i> Book catalog browsing
+                                    </li>
+                                    <li class="flex items-center"><i class="fas fa-spinner text-yellow-500 mr-2"></i>
+                                        Book issuing system</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i> Book
+                                        return system</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        Search functionality</li>
+                                </ul>
+                            </div>
+
+                            <!-- Phase 3 -->
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-medium text-gray-800">Phase 3: Advanced Features</h4>
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full">Not
+                                        Started</span>
+                                </div>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i> Fine
+                                        management system</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        Reservation system</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        Report generation</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        Notifications system</li>
+                                </ul>
+                            </div>
+
+                            <!-- Phase 4 -->
+                            <div class="border-l-4 border-gray-300 pl-4">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-medium text-gray-800">Phase 4: Testing & Deployment</h4>
+                                    <span
+                                        class="px-3 py-1 bg-gray-100 text-gray-800 text-sm font-medium rounded-full">Not
+                                        Started</span>
+                                </div>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        System testing</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i> Bug
+                                        fixing</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        Performance optimization</li>
+                                    <li class="flex items-center"><i class="far fa-circle text-gray-400 mr-2"></i>
+                                        Deployment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Mark Your Progress</h3>
+                        <div class="bg-gray-50 p-5 rounded-lg">
+                            <p class="text-gray-600 mb-4">Update the status of features as you complete them:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Select a feature to
+                                        update:</label>
+                                    <select id="feature-select"
+                                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="">-- Choose a feature --</option>
+                                        <option value="student-browse">Student: Browse Catalog</option>
+                                        <option value="student-issue">Student: Book Issuing</option>
+                                        <option value="student-return">Student: Return Books</option>
+                                        <option value="admin-book-mgmt">Admin: Book Management</option>
+                                        <option value="admin-user-mgmt">Admin: User Management</option>
+                                        <option value="system-auth">System: User Authentication</option>
+                                        <option value="system-db">System: Database Integration</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Update status
+                                        to:</label>
+                                    <div class="flex space-x-3">
+                                        <button data-status="completed"
+                                            class="status-btn flex-1 bg-green-100 text-green-800 py-3 rounded-lg font-medium hover:bg-green-200 transition">Completed</button>
+                                        <button data-status="in-progress"
+                                            class="status-btn flex-1 bg-yellow-100 text-yellow-800 py-3 rounded-lg font-medium hover:bg-yellow-200 transition">In
+                                            Progress</button>
+                                        <button data-status="not-started"
+                                            class="status-btn flex-1 bg-red-100 text-red-800 py-3 rounded-lg font-medium hover:bg-red-200 transition">Not
+                                            Started</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 p-4 bg-blue-50 rounded-lg hidden" id="status-message">
+                                <p class="text-blue-800"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Access Levels Tab -->
+            <div id="access" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Access Levels & Permissions</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Student Access -->
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-user-graduate text-blue-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Student Access</h3>
+                                    <p class="text-gray-600">Limited access for library users</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">View Permissions</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li class="flex items-center"><i class="fas fa-eye text-blue-500 mr-2"></i> View
+                                            book catalog</li>
+                                        <li class="flex items-center"><i class="fas fa-eye text-blue-500 mr-2"></i> View
+                                            personal borrowing history</li>
+                                        <li class="flex items-center"><i class="fas fa-eye text-blue-500 mr-2"></i> View
+                                            due dates and fines</li>
+                                        <li class="flex items-center"><i class="fas fa-eye text-blue-500 mr-2"></i> View
+                                            personal profile</li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">Action Permissions</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Borrow/issue books
+                                            (within limit)</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Return borrowed
+                                            books</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Renew books (if
+                                            available)</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Reserve unavailable
+                                            books</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Update personal
+                                            information</li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">Restrictions</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li class="flex items-center"><i
+                                                class="fas fa-times-circle text-red-500 mr-2"></i> Cannot add/remove
+                                            books</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-times-circle text-red-500 mr-2"></i> Cannot manage other
+                                            users</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-times-circle text-red-500 mr-2"></i> Cannot modify system
+                                            settings</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-times-circle text-red-500 mr-2"></i> Cannot access admin
+                                            reports</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Admin/Librarian Access -->
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-user-tie text-green-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Admin/Librarian Access</h3>
+                                    <p class="text-gray-600">Full access to manage the library system</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">Full System Access</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Complete book
+                                            management (CRUD)</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Full user
+                                            management (CRUD)</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Process book
+                                            issuing and returns</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Manage fines and
+                                            waivers</li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">Administrative Privileges</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Configure system
+                                            settings</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Generate and view
+                                            all reports</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> View audit logs and
+                                            activities</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Manage book
+                                            reservations</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-check-circle text-green-500 mr-2"></i> Set borrowing rules
+                                            and limits</li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-2">Special Permissions</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li class="flex items-center"><i
+                                                class="fas fa-shield-alt text-purple-500 mr-2"></i> Override borrowing
+                                            limits</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-shield-alt text-purple-500 mr-2"></i> Waive or adjust
+                                            fines</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-shield-alt text-purple-500 mr-2"></i> Access to all user
+                                            data</li>
+                                        <li class="flex items-center"><i
+                                                class="fas fa-shield-alt text-purple-500 mr-2"></i> Backup and restore
+                                            system</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 bg-blue-50 p-5 rounded-lg">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Access Control Implementation Tips</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start"><i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                <span>Implement role-based access control (RBAC) in your backend</span></li>
+                            <li class="flex items-start"><i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                <span>Use middleware to check user roles before allowing actions</span></li>
+                            <li class="flex items-start"><i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                <span>Hide admin-only UI elements from student users</span></li>
+                            <li class="flex items-start"><i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                <span>Validate all requests on the server side, not just client side</span></li>
+                            <li class="flex items-start"><i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                <span>Keep audit logs of all administrative actions</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-600">
+            <p>Library Management System Project Tracker • Use this tool to track your development progress</p>
+            <p class="mt-2 text-sm">Click on features to update their status as you complete them</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all tabs and buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Feature status update functionality
+        let featureStatus = {
+            'student-browse': 'completed',
+            'student-issue': 'in-progress',
+            'student-return': 'not-started',
+            'admin-book-mgmt': 'completed',
+            'admin-user-mgmt': 'in-progress',
+            'system-auth': 'completed',
+            'system-db': 'in-progress'
+        };
+
+        // Update progress counters
+        function updateProgressCounters() {
+            let completed = 0;
+            let inProgress = 0;
+            let notStarted = 0;
+
+            // Count features in the UI
+            document.querySelectorAll('.feature-card').forEach(card => {
+                if (card.classList.contains('completed')) completed++;
+                else if (card.classList.contains('in-progress')) inProgress++;
+                else if (card.classList.contains('not-started')) notStarted++;
+            });
+
+            // Update counters
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('inprogress-count').textContent = inProgress;
+            document.getElementById('notstarted-count').textContent = notStarted;
+
+            // Update progress bars
+            const total = completed + inProgress + notStarted;
+            document.getElementById('completed-bar').style.width = `${(completed / total) * 100}%`;
+            document.getElementById('inprogress-bar').style.width = `${(inProgress / total) * 100}%`;
+            document.getElementById('notstarted-bar').style.width = `${(notStarted / total) * 100}%`;
+        }
+
+        // Initialize progress counters
+        updateProgressCounters();
+
+        // Status update buttons
+        document.querySelectorAll('.status-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const featureSelect = document.getElementById('feature-select');
+                const selectedFeature = featureSelect.value;
+                const newStatus = button.getAttribute('data-status');
+
+                if (!selectedFeature) {
+                    showStatusMessage('Please select a feature first!', 'error');
+                    return;
+                }
+
+                // Update the feature status
+                featureStatus[selectedFeature] = newStatus;
+
+                // Update the corresponding feature card in the UI
+                updateFeatureCard(selectedFeature, newStatus);
+
+                // Show success message
+                showStatusMessage(`Feature status updated to "${newStatus.replace('-', ' ')}"!`, 'success');
+
+                // Update progress counters
+                updateProgressCounters();
+
+                // Reset select
+                featureSelect.value = '';
+            });
+        });
+
+        // Update feature card based on status
+        function updateFeatureCard(featureId, newStatus) {
+            let featureName = '';
+            let cardSelector = '';
+
+            // Map feature IDs to their UI elements
+            switch (featureId) {
+                case 'student-browse':
+                    featureName = 'Browse Catalog';
+                    cardSelector = '.feature-card:has(h3:contains("Browse Catalog"))';
+                    break;
+                case 'student-issue':
+                    featureName = 'Book Issuing';
+                    cardSelector = '.feature-card:has(h3:contains("Book Issuing"))';
+                    break;
+                case 'student-return':
+                    featureName = 'Return Books';
+                    cardSelector = '.feature-card:has(h3:contains("Return Books"))';
+                    break;
+                case 'admin-book-mgmt':
+                    featureName = 'Book Management';
+                    cardSelector = '.feature-card:has(h3:contains("Book Management"))';
+                    break;
+                case 'admin-user-mgmt':
+                    featureName = 'User Management';
+                    cardSelector = '.feature-card:has(h3:contains("User Management"))';
+                    break;
+                case 'system-auth':
+                    featureName = 'User Authentication';
+                    cardSelector = '.feature-card:has(h3:contains("User Authentication"))';
+                    break;
+                case 'system-db':
+                    featureName = 'Database Integration';
+                    cardSelector = '.feature-card:has(h3:contains("Database Integration"))';
+                    break;
+            }
+
+            if (cardSelector) {
+                const card = document.querySelector(cardSelector);
+                if (card) {
+                    // Remove all status classes
+                    card.classList.remove('completed', 'in-progress', 'not-started');
+
+                    // Add the new status class
+                    card.classList.add(newStatus);
+                }
+            }
+        }
+
+        // Show status message
+        function showStatusMessage(message, type) {
+            const messageEl = document.getElementById('status-message');
+            const messageText = messageEl.querySelector('p');
+
+            messageText.textContent = message;
+
+            // Set color based on type
+            if (type === 'error') {
+                messageEl.className = 'mt-6 p-4 bg-red-50 rounded-lg';
+                messageText.className = 'text-red-800';
+            } else {
+                messageEl.className = 'mt-6 p-4 bg-green-50 rounded-lg';
+                messageText.className = 'text-green-800';
+            }
+
+            messageEl.classList.remove('hidden');
+
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageEl.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize with some example data
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set initial status for feature cards based on our data
+            for (const [featureId, status] of Object.entries(featureStatus)) {
+                updateFeatureCard(featureId, status);
+            }
+
+            // Update counters
+            updateProgressCounters();
+        });
+    </script>
+</body>
+
+</html>

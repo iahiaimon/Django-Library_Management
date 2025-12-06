@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Roadmap — Library System</title>
+
+  <!-- Tailwind CDN (for quick prototyping) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+  <main class="max-w-4xl mx-auto p-6">
+    <header class="mb-8">
+      <h1 class="text-3xl font-semibold mb-1">Library Project — Roadmap</h1>
+      <p class="text-sm text-slate-500">Status page showing what you've done and what to implement next.</p>
+    </header>
+
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h2 class="text-xl font-medium mb-3">Quick Summary</h2>
+      <ul class="text-sm space-y-1">
+        <li>Project type: Library / Book management</li>
+        <li>Main roles: <strong>Student</strong> (user) & <strong>Admin</strong> (staff / superuser)</li>
+        <li>Tech: Django backend, templates, (optional: React for frontend later)</li>
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h2 class="text-xl font-medium mb-3">Status — Completed (based on our chat)</h2>
+
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="font-medium">Sign up view & form</div>
+            <div class="text-sm text-slate-500">Signup view fixed to hash password before saving.</div>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="font-medium">Login flow example</div>
+            <div class="text-sm text-slate-500">Authenticate + login using `authenticate()` and `login()`.</div>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="font-medium">AllBooks view corrected</div>
+            <div class="text-sm text-slate-500">Use `Book.objects.all()` and pass to template.</div>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="font-medium">Category slug guidance</div>
+            <div class="text-sm text-slate-500">Explained `save()` auto-slug, admin `prepopulated_fields`, or signal option.</div>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="font-medium">Fixed `django_browser_reload` template tag error</div>
+            <div class="text-sm text-slate-500">Explained `{% load django_browser_reload %}` & settings changes.</div>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="font-medium">Home URL / path fix</div>
+            <div class="text-sm text-slate-500">Explained no leading slash in `path()` and how to include app urls.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h2 class="text-xl font-medium mb-3">High priority — Implement next</h2>
+
+      <ol class="list-decimal pl-5 space-y-3 text-sm">
+        <li>
+          <strong>Book model & CRUD</strong> — Create Book model (title, author, isbn, qty, cover_image, description, category, available). Build Add/Edit/Delete views with proper admin protection.
+        </li>
+        <li>
+          <strong>Borrowing system</strong> — Borrow request model, approve/deny by admin, due dates, stock decrement/increment.
+        </li>
+        <li>
+          <strong>Authentication & Profiles</strong> — Signup (done), login (example ready), profile edit, password change/reset.
+        </li>
+        <li>
+          <strong>Permissions</strong> — Protect endpoints with `login_required` and staff checks for admin actions.
+        </li>
+        <li>
+          <strong>Templates & styling</strong> — Provide nice list and detail pages (Tailwind components).
+        </li>
+      </ol>
+    </section>
+
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h2 class="text-xl font-medium mb-3">Nice-to-have / later</h2>
+      <ul class="space-y-2 text-sm">
+        <li>Search & filters (title/author/category)</li>
+        <li>Email notifications for due reminders</li>
+        <li>User roles beyond student/admin (librarian)</li>
+        <li>Reports & analytics (most-borrowed, overdue)</li>
+        <li>REST API endpoints (Django REST Framework)</li>
+        <li>Unit tests and CI</li>
+        <li>Deploy (Render / Heroku / Railway)</li>
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h2 class="text-xl font-medium mb-3">Suggested milestone plan (1–2 week sprints)</h2>
+
+      <ol class="list-decimal pl-5 space-y-3 text-sm">
+        <li><strong>Sprint 1 (days 1–4):</strong> Models (User extension, Book, Category), basic templates for list/detail, signup & login working.</li>
+        <li><strong>Sprint 2 (days 5–9):</strong> Admin CRUD for books/categories, add book form, include cover image upload, slug generation.</li>
+        <li><strong>Sprint 3 (days 10–14):</strong> Borrow flow, user dashboard (borrow history), permissions and testing.</li>
+        <li><strong>Stretch goals:</strong> Search, email reminders, REST API, deploy.</li>
+      </ol>
+    </section>
+
+    <footer class="text-sm text-slate-500 mt-6">
+      <p>Tip: implement one feature at a time. For each feature, write the model → form → view → template → tests.</p>
+      <p class="mt-2">If you want, I can now: <strong>generate the Book model + AddBookView + template</strong> or <strong>create the borrow request flow</strong>. Which one would you like next?</p>
+    </footer>
+  </main>
+
+</body>
+</html>
