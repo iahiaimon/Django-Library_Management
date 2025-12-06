@@ -1,15 +1,41 @@
 {% load static %}
 
-<!-- Top Header -->
-<header class="bg-white shadow-sm text-black">
+<header class="bg-white border-b shadow-sm text-black">
   <div class="flex justify-between items-center p-4">
+    <!-- Enhanced Search with Suggestions -->
+    <div class="relative hidden md:block">
+      <div class="relative">
+        <input type="text" id="searchInput" placeholder="Search books, authors, ISBN..."
+          class="pl-10 pr-4 py-2 border border-gray-300 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+          onfocus="this.parentElement.classList.add('w-80')" onblur="this.parentElement.classList.remove('w-80')">
+        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+      </div>
 
-    <div class="flex items-center">
-      <button class="md:hidden p-2 mr-2 text-gray-900">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
-      <h1 class="text-xl font-semibold text-gray-800">{{ user.username }}'s Dashboard</h1>
+      <!-- Search Suggestions -->
+      <div id="searchSuggestions"
+        class="absolute top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+        <div class="p-3 border-b">
+          <p class="text-xs text-gray-500 font-medium">Recent Searches</p>
+          <div class="mt-2">
+            <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Fiction</button>
+            <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Science</button>
+            <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Harry
+              Potter</button>
+          </div>
+        </div>
+        <div class="p-3">
+          <p class="text-xs text-gray-500 font-medium mb-2">Quick Links</p>
+          <a href="#" class="flex items-center p-2 hover:bg-gray-50 rounded">
+            <i class="fas fa-book text-blue-500 mr-3"></i>
+            <div>
+              <p class="text-sm">Advanced Search</p>
+              <p class="text-xs text-gray-500">Search by ISBN, author, etc.</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
+
 
 
     <!-- Dropdown in Navbar -->
@@ -27,10 +53,6 @@
         class="absolute left-full top-0 ml-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
         <div class="py-2">
           <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-search mr-3 text-gray-400"></i>
-            <span>Search Books</span>
-          </a>
-          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
             <i class="fas fa-filter mr-3 text-gray-400"></i>
             <span>By Category</span>
           </a>
@@ -45,44 +67,7 @@
         </div>
       </div>
     </div>
-
-
-
     <div class="flex items-center space-x-4">
-
-      <!-- Enhanced Search with Suggestions -->
-      <div class="relative hidden md:block">
-        <div class="relative">
-          <input type="text" id="searchInput" placeholder="Search books, authors, ISBN..."
-            class="pl-10 pr-4 py-2 border border-gray-300 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-            onfocus="this.parentElement.classList.add('w-80')" onblur="this.parentElement.classList.remove('w-80')">
-          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-        </div>
-
-        <!-- Search Suggestions -->
-        <div id="searchSuggestions"
-          class="absolute top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
-          <div class="p-3 border-b">
-            <p class="text-xs text-gray-500 font-medium">Recent Searches</p>
-            <div class="mt-2">
-              <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Fiction</button>
-              <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Science</button>
-              <button class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full mr-2 mb-1">Harry
-                Potter</button>
-            </div>
-          </div>
-          <div class="p-3">
-            <p class="text-xs text-gray-500 font-medium mb-2">Quick Links</p>
-            <a href="#" class="flex items-center p-2 hover:bg-gray-50 rounded">
-              <i class="fas fa-book text-blue-500 mr-3"></i>
-              <div>
-                <p class="text-sm">Advanced Search</p>
-                <p class="text-xs text-gray-500">Search by ISBN, author, etc.</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
 
       <!-- Enhanced Notifications -->
       <div class="relative group">
@@ -150,10 +135,9 @@
         <button
           class="flex items-center focus:outline-none transition-all duration-300 hover:bg-gray-100 p-2 rounded-lg">
           <div class="relative">
-            <img
-              class="h-9 w-9 rounded-full border-2 border-transparent group-hover:border-blue-500
-               transition-all duration-300"
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user" alt="User Avatar">
+            <img class="h-9 w-9 rounded-full border-2 border-transparent group-hover:border-blue-500
+               transition-all duration-300" src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user"
+              alt="User Avatar">
             <span class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white">
             </span>
           </div>
