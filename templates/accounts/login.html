@@ -5,9 +5,18 @@
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
 
-    <button type="submit" class="btn btn-primary">login User</button>
+    <form action="" method="post">
+        <div class="username">
+            <input type="text" name="username" placeholder="Enter your username">
+        </div>
+
+        <div class="pass">
+            <input type="password" name="password" placeholder="Enter your password">
+        </div>
+        <button type="submit" class="btn btn-primary">login User</button>
+    </form>
+
 </form>
 
 {% endblock %}

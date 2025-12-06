@@ -27,8 +27,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third party library
     "django_browser_reload",
-    "tailwind",
-    "theme",
     # Apps
     "accounts",
     "books",
@@ -36,8 +34,8 @@ INSTALLED_APPS = [
     "loans",
 ]
 
-TAILWIND_APP_NAME = 'theme'
-INTERNAL_IPS = ["127.0.0.1"]
+# TAILWIND_APP_NAME = 'theme'
+# INTERNAL_IPS = ["127.0.0.1"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
