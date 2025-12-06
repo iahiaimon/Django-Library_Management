@@ -28,7 +28,7 @@ class AddBook(TimeStampModel):
     slug = models.SlugField(max_length=255 , unique=True , blank= True)
     author = models.CharField(blank=False, null=False)
     description = models.TextField()
-    isbn = models.CharField(blank=False, null=False, max_length=13)
+    isbn = models.TextField(blank=False, null=False)
     publisher = models.CharField(blank=False, null=False)
     publication_date = models.DateField()
     language = models.CharField(blank=False, null=False)
