@@ -23,7 +23,7 @@ class AddBook(TimeStampModel):
     publication_date = models.DateField()
     language = models.CharField(blank=False, null=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    cover_image = models.ImageField()
+    cover_image = models.ImageField(upload_to="Book Cover" , default = "Book Cover/default_cover.jpg")
 
     def __str__(self):
         return f"{self.title} -- {self.isbn} by {self.author}"

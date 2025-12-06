@@ -151,13 +151,14 @@
           class="flex items-center focus:outline-none transition-all duration-300 hover:bg-gray-100 p-2 rounded-lg">
           <div class="relative">
             <img
-              class="h-9 w-9 rounded-full border-2 border-transparent group-hover:border-blue-500 transition-all duration-300"
+              class="h-9 w-9 rounded-full border-2 border-transparent group-hover:border-blue-500
+               transition-all duration-300"
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user" alt="User Avatar">
             <span class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white">
             </span>
           </div>
           <div class="ml-3 text-left hidden md:block">
-            <p class="font-medium text-gray-800">Alex Johnson</p>
+            <p class="font-medium text-gray-800">{{ user.username }}</p>
             <p class="text-xs text-gray-500">Gold Member</p>
           </div>
           <i
@@ -172,8 +173,8 @@
               <img class="h-12 w-12 rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user"
                 alt="User Avatar">
               <div class="ml-3">
-                <p class="font-bold text-gray-800">Alex Johnson</p>
-                <p class="text-sm text-gray-600">alex.j@email.com</p>
+                <p class="font-bold text-gray-800">{{ user.username }}</p>
+                <p class="text-sm text-gray-600">{{ user.email }}</p>
                 <p class="text-xs text-blue-600 font-medium mt-1">Gold Member</p>
               </div>
             </div>
