@@ -48,9 +48,6 @@
 
 
 
-
-
-
     <div class="flex items-center space-x-4">
 
       <!-- Enhanced Search with Suggestions -->
@@ -87,7 +84,7 @@
         </div>
       </div>
 
-            <!-- Enhanced Notifications -->
+      <!-- Enhanced Notifications -->
       <div class="relative group">
         <button
           class="p-2 text-gray-700 hover:bg-gray-100 rounded-full relative transition-all duration-300 hover:scale-110">
@@ -109,7 +106,7 @@
             <!-- Unread Notification -->
             <div class="p-4 border-b hover:bg-blue-50 cursor-pointer transition-colors duration-200">
               <div class="flex">
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                   <div class="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                     <i class="fas fa-exclamation-circle"></i>
                   </div>
@@ -119,7 +116,7 @@
                   <p class="text-sm text-gray-600">"The Great Gatsby" is due tomorrow</p>
                   <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
                 </div>
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                   <span class="h-2 w-2 bg-red-500 rounded-full"></span>
                 </div>
               </div>
@@ -128,7 +125,7 @@
             <!-- Read Notification -->
             <div class="p-4 border-b hover:bg-gray-50 cursor-pointer transition-colors duration-200">
               <div class="flex">
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                   <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                     <i class="fas fa-check-circle"></i>
                   </div>
@@ -156,7 +153,8 @@
             <img
               class="h-9 w-9 rounded-full border-2 border-transparent group-hover:border-blue-500 transition-all duration-300"
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=library-user" alt="User Avatar">
-            <span class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></span>
+            <span class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white">
+            </span>
           </div>
           <div class="ml-3 text-left hidden md:block">
             <p class="font-medium text-gray-800">Alex Johnson</p>
@@ -197,7 +195,7 @@
           </div>
 
           <div class="py-2 border-t">
-            <a href="#" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50">
+            <a href="{% url 'logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50">
               <i class="fas fa-sign-out-alt mr-3"></i>
               <span>Logout</span>
             </a>

@@ -9,6 +9,7 @@ class CustomUserForm(forms.ModelForm):
             "username",
             "email",
             "phone",
+            "image",
             "institute",
             "department",
             "password",
@@ -23,6 +24,9 @@ class CustomUserForm(forms.ModelForm):
             ),
             "phone": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Enter phone number"}
+            ),
+            "image": forms.FileInput(
+                attrs={"class": "form-control", "placeholder": "Upload your student id card"}
             ),
             "institute": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Your institute name"}
