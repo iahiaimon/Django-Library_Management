@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category, AddBook
+from .models import Category, AddBook, BorrowBook
 
 
 class CategoryForm(forms.ModelForm):
@@ -22,3 +22,14 @@ class AddBookForm(forms.ModelForm):
             "category",
             "cover_image",
         )
+
+
+class BorrowBookForm(forms.ModelForm):
+    models = BorrowBook
+    fields = (
+        "user",
+        "book",
+        "isbn",
+        "borrow_date",
+        "return_date",
+    )

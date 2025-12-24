@@ -1,0 +1,11 @@
+{% load static %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+this is add books form page
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form_p }}
+</form>
+{% endblock %}

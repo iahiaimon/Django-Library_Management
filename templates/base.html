@@ -25,7 +25,10 @@
   <div class="bg-gray-100 font-sans">
     <div class="flex">
 
+      {% if not request.path == '/user/login/' and not request.path == '/user/register/' %}
       {% include 'include/sidebar.html' %}
+      {% endif %}
+
 
       {% block content %}
 

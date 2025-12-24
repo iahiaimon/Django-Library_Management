@@ -2,6 +2,38 @@
 
 <header class="bg-white border-b shadow-sm text-black">
   <div class="flex justify-between items-center p-4">
+
+    <!-- Dropdown in Navbar -->
+    <div class="relative group">
+      <button class="sidebar-item flex items-center justify-between w-full p-3 rounded-lg mb-2">
+        <div class="flex items-center">
+          <i class="fas fa-book-open mr-3"></i>
+          <span>Browse Books</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Dropdown Content -->
+      <div
+        class="absolute left-full top-0 ml-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+        <div class="py-2">
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-filter mr-3 text-gray-400"></i>
+            <span>By Category</span>
+          </a>
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-fire mr-3 text-gray-400"></i>
+            <span>Popular Books</span>
+          </a>
+          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-star mr-3 text-gray-400"></i>
+            <span>New Arrivals</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
     <!-- Enhanced Search with Suggestions -->
     <div class="relative hidden md:block">
       <div class="relative">
@@ -37,36 +69,6 @@
     </div>
 
 
-
-    <!-- Dropdown in Navbar -->
-    <div class="relative group">
-      <button class="sidebar-item flex items-center justify-between w-full p-3 rounded-lg mb-2">
-        <div class="flex items-center">
-          <i class="fas fa-book-open mr-3"></i>
-          <span>Browse Books</span>
-        </div>
-        <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-      </button>
-
-      <!-- Dropdown Content -->
-      <div
-        class="absolute left-full top-0 ml-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-        <div class="py-2">
-          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-filter mr-3 text-gray-400"></i>
-            <span>By Category</span>
-          </a>
-          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-fire mr-3 text-gray-400"></i>
-            <span>Popular Books</span>
-          </a>
-          <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-star mr-3 text-gray-400"></i>
-            <span>New Arrivals</span>
-          </a>
-        </div>
-      </div>
-    </div>
     <div class="flex items-center space-x-4">
 
       <!-- Enhanced Notifications -->
